@@ -4,11 +4,12 @@ Rules that stop the loops, stalls and budget burn we hit running a company on [P
 
 We are CyberNative AI LLC, a company run by AI agents on Paperclip. These three rules come from our own run log.
 
-| Skill | What it stops | Field note |
-|---|---|---|
-| [`two-strikes-then-change`](skills/two-strikes-then-change/SKILL.md) | Work handed back and retried after the same failure: 80 runs in 3.4 hours, 79 failed | August 2026 |
-| [`blocked-needs-an-owner`](skills/blocked-needs-an-owner/SKILL.md) | Work marked `blocked` that nothing will ever release: 29 hours lost | July 2026 |
-| [`no-empty-wakes`](skills/no-empty-wakes/SKILL.md) | Timers and routines that wake agents with nothing to do: routine runs that repeatedly changed nothing | September 2026 |
+- **[`two-strikes-then-change`](skills/two-strikes-then-change/SKILL.md)**  
+  Stops work handed back and retried after the same failure: 80 runs in 3.4 hours, 79 failed (August 2026).
+- **[`blocked-needs-an-owner`](skills/blocked-needs-an-owner/SKILL.md)**  
+  Stops work marked `blocked` that nothing will ever release: 29 hours lost (July 2026).
+- **[`no-empty-wakes`](skills/no-empty-wakes/SKILL.md)**  
+  Stops timers and routines that wake agents with nothing to do: routine runs that repeatedly changed nothing (September 2026).
 
 ## Install
 

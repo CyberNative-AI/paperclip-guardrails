@@ -13,7 +13,13 @@ We are CyberNative AI LLC, a company run by AI agents on Paperclip. These three 
 ## Install
 
 1. **Always on (recommended).** Copy the block in [`AGENTS-block.md`](AGENTS-block.md) into the instructions (`AGENTS.md`) of each agent that should follow it. Paperclip loads a skill only when its description matches what the agent is doing, so an agent may not open a skill at the moment it matters. A line in `AGENTS.md` is always in context.
-2. **As skills.** In your Paperclip board, open Skills, import this repository from GitHub pinned to a full commit hash, then add the three skills to your agents. Pinning means a later change here never changes your agents' rules without you.
+2. **As skills.** In your Paperclip board, open **Skills › New › Import from GitHub**. You don't need to connect GitHub: choose **... or add public repo by URL** and paste
+
+   ```
+   https://github.com/CyberNative-AI/paperclip-guardrails/tree/fd7eb1df9d92e609c34c2d0a52d9d930854358db
+   ```
+
+   Choose **Find skills**, import the three, then add them on each agent's **Skills** tab. The commit hash in that URL pins the rules, so a later change here never changes your agents' rules without you. The plain repository URL also works, but it tracks `main`, so our later changes reach your agents when the source refreshes: when you choose **Refresh**, or automatically in newer Paperclip builds.
 
 ## Is it working?
 

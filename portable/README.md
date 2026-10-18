@@ -2,10 +2,10 @@
 
 The same failure→rule pairs, written for one agent and one operator instead of a Paperclip company: Codex, Claude Code, OpenClaw or anything else that reads `SKILL.md` or `AGENTS.md`. Each skill starts with the failure that made us write it.
 
-| Skill | What it stops | Field note |
-|---|---|---|
-| [`done-needs-evidence`](done-needs-evidence/SKILL.md) | "Done" that was never checked where it matters: a release that passed every check and failed live | July 2026 |
-| [`two-strikes-then-change`](two-strikes-then-change/SKILL.md) | The same failure retried unchanged: 80 runs in 3.4 hours, 79 failed | August 2026 |
+- **[`done-needs-evidence`](done-needs-evidence/SKILL.md)**  
+  Stops "done" that was never checked where it matters: a release that passed every check and failed live (July 2026).
+- **[`two-strikes-then-change`](two-strikes-then-change/SKILL.md)**  
+  Stops the same failure retried unchanged: 80 runs in 3.4 hours, 79 failed (August 2026).
 
 ## Install
 

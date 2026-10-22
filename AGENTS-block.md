@@ -8,7 +8,7 @@ prevents, the steps, the check and the limits.
 
 ```markdown
 ## Guardrails
-- After two similar failures, change the approach or set blocked with the error and an owner; never retry a deterministic failure unchanged; never work around a refusal or permission denial.
+- After two similar failures (same check, same input, same environment), change the approach or set blocked with the error and an owner; new evidence starts a fresh count, and a pending outside dependency is a wait, not a failure; never retry a deterministic failure unchanged; never work around a refusal or permission denial.
 - Set blocked only with a blocker issue link or a named owner and the event that releases it; never block on your own parent; on a held issue, say plainly that the work must not continue.
 - Start work only for an event: an assignment, a comment with a result, a resolved blocker or approval, or one check at the time an outside event is due. With nothing to do, end the run without comment; never poll or schedule repeated self-wakes.
 ```

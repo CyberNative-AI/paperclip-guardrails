@@ -32,24 +32,28 @@ Before you report the task as done, your final message contains:
 1. **What changed:** the artifact (commit, file, URL, sent message).
 2. **How you checked it:** the exact check and its result, for example
    `GET https://example.com/pricing (logged out) → 200, shows "$19/month"`.
-   Check the real destination, not your own copy.
+   Check the real destination, not your own copy, and that it serves the
+   bytes you tested.
 3. **The level reached**, one word:
-   - `prepared`: the artifact exists, nobody uses it yet;
+   - `prepared`: the artifact exists but has not left your side;
    - `approved`: the named reviewer accepted it;
    - `deployed`: it is live where users reach it;
-   - `working`: you watched it do its job in the real place;
+   - `working`: you watched it do its job in the real place; name the
+     path and inputs you exercised, and the rest stays unknown;
    - `used`: someone other than you and the user used it.
 
 If the user asked for `working` and you only have `prepared`, it is not
 done: say so, and name the next step and who can take it. A check that
-could not run is `unknown`, with the reason. "Run succeeded", "exit 0",
-"should work" and "looks good" are not evidence.
+could not run is `unknown`, with the reason: if the deploy went out and only
+the check in the real place could not run, report `deployed`, working
+unknown, not `prepared`. "Run succeeded", "exit 0", "should work" and
+"looks good" are not evidence.
 
 To keep it in context all the time, paste this line into `AGENTS.md` or
 `CLAUDE.md`: *"Report done only with a final message that names the
 artifact, the check you ran where it matters and its result, and the level
-reached: prepared, approved, deployed, working or used; unknown is not
-passed."*
+reached: prepared, approved, deployed, working (for the path and inputs you
+exercised) or used; unknown is not passed."*
 
 ## How to tell it is working
 
@@ -67,4 +71,6 @@ passed."*
 - Some outcomes cannot be seen yet when the task ends (a measurement over
   seven days). Close at the honest level and schedule the later check.
 - A check is only as good as the destination it reads. If the agent cannot
-  reach production, the honest level is `prepared`.
+  reach production, it cannot report `working`: the honest report is
+  `deployed`, working unknown, when the deploy itself is confirmed, and
+  `prepared` when it is not.

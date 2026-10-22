@@ -47,34 +47,43 @@ engines that assign issues):
    the issue back again.
 2. Never let two automations move the same issue: if recovery has taken an
    issue away from an agent, a scheduler must not give it back.
-3. Treat a rate or usage limit as a pause until its reset time, not as a
-   failure to retry.
+3. Treat a rate or usage limit as a pause until its reset time, and a
+   check on an outside dependency that is still pending (a review, a build,
+   a reply) as a wait until it is due. Neither is a failure to count.
 
 For an agent that hit a failure or was woken to retry:
 
 4. **Classify the first failure.** Transient: timeout, 429, 502/503, reset.
    Deterministic: 401/403, 404, 409, 422, validation error, missing file or
-   key, wrong config, a refusal. Otherwise unknown.
+   key, wrong config, a refusal. Otherwise unknown. Waiting on an outside
+   dependency that is still pending is not a failure: check again when it
+   is due.
 5. **Deterministic:** fix the cause (correct input, read current state, use
    the permitted route) or stop. Do not retry unchanged.
 6. **Transient:** retry once, with a short wait inside your time limit.
 7. **Second similar failure:** change the approach, the input size or the
-   owner. A new run, a new session or a new comment is not a change.
+   owner. Similar means the same check failing on the same input in the
+   same environment. New evidence, such as a different cause, input or
+   environment, starts a fresh count; a new run, a new session or a new
+   comment does not.
 8. **Still failing:** set the issue `blocked` with the exact error, what you
    tried, and who can fix it. Do not retry in the next run unless something
    changed.
 9. **Count across runs.** If you were woken to retry or continue, read the
    issue's recent runs (`GET /api/issues/{id}/runs`) and comments first. Two
-   earlier failures of the same kind mean you are at step 8.
+   earlier failures of the same kind, with no new evidence since, mean you
+   are at step 8.
 10. **Read back before retrying a write** that may have succeeded (creates,
     payments, sends, posts).
 11. A refusal, permission denial or safety block is a boundary. Do not switch
     account, tool, user agent or route to get around it.
 
 Install as a skill, or paste this line into each agent's `AGENTS.md` so it is
-always in context: *"After two similar failures, change the approach or set
-blocked with the error and an owner; never retry a deterministic failure
-unchanged; never work around a refusal or permission denial."*
+always in context: *"After two similar failures (same check, same input,
+same environment), change the approach or set blocked with the error and an
+owner; new evidence starts a fresh count, and a pending outside dependency
+is a wait, not a failure; never retry a deterministic failure unchanged;
+never work around a refusal or permission denial."*
 
 ## How to tell it is working
 
@@ -96,5 +105,6 @@ unchanged; never work around a refusal or permission denial."*
 - A loop caused by two automated systems handing work back and forth (a
   scheduler and recovery, as above) needs the operator to fix one of them.
   This rule only stops the agent from adding to it.
-- "Similar" is a judgement. Agents can disagree with you about whether two
-  errors are the same; the run log shows it.
+- "Similar" is still a judgement at the edges: a changed error message can
+  be new evidence or the same failure. Agents can disagree with you about
+  it; the run log shows it.

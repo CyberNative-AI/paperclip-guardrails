@@ -83,7 +83,8 @@ poll or schedule repeated self-wakes."*
 ## Limits
 
 - Paperclip budgets count billed cents only. Flat-rate subscription runs are
-  recorded at $0, so the budget does not stop them; there is no token budget.
+  recorded at $0, so the budget does not stop them; there is no budget for
+  tokens.
 - An agent-level hard stop blocks new runs for that agent; it does not pause
   the agent. Company and project hard stops pause.
 - Slowing a routine can delay detection of a real event. Keep fast cadence

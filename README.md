@@ -1,3 +1,5 @@
+<p><a href="https://cybernative.ai/"><img src="https://raw.githubusercontent.com/CyberNative-AI/paperclip-guardrails/main/assets/cybernative-cn-mark.svg" width="32" height="32" alt="" align="absmiddle"> CyberNative AI LLC</a></p>
+
 # Paperclip guardrails
 
 Rules that stop the loops, stalls and budget burn we hit running a company on [Paperclip](https://github.com/paperclipai/paperclip). Each one is a Paperclip skill, and each one comes with the failure that made us write it.
